@@ -23,7 +23,7 @@ export function SignaturePad({ value, onChange }: SignaturePadProps) {
     ctx.lineJoin = 'round';
   }, []);
 
-  const getCoordinates = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const getCoordinates = (e: MouseEvent | TouchEvent) => {
     const canvas = canvasRef.current;
     if (!canvas) return { x: 0, y: 0 };
 
@@ -31,27 +31,41 @@ export function SignaturePad({ value, onChange }: SignaturePadProps) {
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
 
+    let clientX = 0;
+    let clientY = 0;
+
+    if (e instanceof TouchEvent) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+
     return {
-      x: (e.clientX - rect.left) * scaleX,
-      y: (e.clientY - rect.top) * scaleY,
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY,
     };
   };
 
-  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const { x, y } = getCoordinates(e);
+    const nativeEvent = e.nativeEvent as MouseEvent | TouchEvent;
+    const { x, y } = getCoordinates(nativeEvent);
     ctx.beginPath();
     ctx.moveTo(x, y);
     setIsDrawing(true);
   };
 
-  const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     if (!isDrawing) return;
+    e.preventDefault();
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -59,12 +73,14 @@ export function SignaturePad({ value, onChange }: SignaturePadProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const { x, y } = getCoordinates(e);
+    const nativeEvent = e.nativeEvent as MouseEvent | TouchEvent;
+    const { x, y } = getCoordinates(nativeEvent);
     ctx.lineTo(x, y);
     ctx.stroke();
   };
 
-  const stopDrawing = () => {
+  const stopDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
     setIsDrawing(false);
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -93,6 +109,10 @@ export function SignaturePad({ value, onChange }: SignaturePadProps) {
         onMouseMove={draw}
         onMouseUp={stopDrawing}
         onMouseLeave={stopDrawing}
+        onTouchStart={startDrawing}
+        onTouchMove={draw}
+        onTouchEnd={stopDrawing}
+        onTouchCancel={stopDrawing}
         style={{
           border: `2px solid ${colors.border}`,
           borderRadius: 10,
@@ -102,6 +122,9 @@ export function SignaturePad({ value, onChange }: SignaturePadProps) {
           width: '100%',
           maxWidth: '400px',
           height: 'auto',
+          touchAction: 'none',
+          WebkitTouchCallout: 'none',
+          userSelect: 'none',
         }}
       />
       <div style={{ display: 'flex', gap: 10 }}>
