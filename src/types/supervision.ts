@@ -20,6 +20,7 @@ export interface SupervisionFormData {
   novedad: string;
   descNovedad: string;
   foto: File | null;
+  firma: string | null;
 }
 
 export type SupervisionFormField = keyof SupervisionFormData;

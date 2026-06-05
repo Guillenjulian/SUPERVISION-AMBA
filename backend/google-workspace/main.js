@@ -27,13 +27,39 @@ function doPost(e) {
     // Esto aparecerá en "Ejecuciones" dentro del editor de Google Apps Script
     console.log('Datos procesados en el backend:', JSON.stringify(datos));
 
+    // Lógica para guardar la firma como archivo .png en Google Drive
+    let firmaUrl = 'Sin firma';
+    if (datos.firma && datos.firma.includes('base64,')) {
+      try {
+        const folderName = "Firmas_Supervision"; // Nombre de la carpeta en Drive
+        let folder;
+        const folders = DriveApp.getFoldersByName(folderName);
+        
+        if (folders.hasNext()) {
+          folder = folders.next();
+        } else {
+          folder = DriveApp.createFolder(folderName);
+        }
+
+        const base64Data = datos.firma.split(',')[1];
+        const nombreArchivo = "Firma_" + (datos.nombreAgente || "Empleado") + "_" + Utilities.formatDate(new Date(), "GMT-3", "yyyyMMdd_HHmmss") + ".png";
+        const blob = Utilities.newBlob(Utilities.base64Decode(base64Data), "image/png", nombreArchivo);
+        const file = folder.createFile(blob);
+        firmaUrl = file.getUrl(); // Obtenemos el link para la auditoría
+      } catch (err) {
+        console.error('Error al guardar firma en Drive:', err.toString());
+        firmaUrl = 'Error al generar archivo .png';
+      }
+    }
+
     sheet.appendRow([
       new Date(),
       datos.supervisor || 'N/A',
       datos.email || 'N/A',
       datos.sector || 'N/A',
       datos.estado || 'N/A',
-      datos.observaciones || ''
+      datos.observaciones || '',
+      firmaUrl // Guardamos el link al archivo .png en Drive
     ]);
 
     return responder({ result: "success" });

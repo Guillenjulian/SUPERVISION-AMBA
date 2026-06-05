@@ -1,9 +1,9 @@
 import { font } from '../../styles/theme';
 import type { SupervisionFormData } from '../../types/supervision';
-import { Field, RadioGroup, Section } from '../ui';
+import { Field, RadioGroup, Section, SignaturePad } from '../ui';
 
 interface Props {
-  form: Pick<SupervisionFormData, 'novedad' | 'descNovedad' | 'foto'>;
+  form: Pick<SupervisionFormData, 'novedad' | 'descNovedad' | 'foto' | 'firma'>;
   onUpdate: <K extends keyof SupervisionFormData>(field: K, value: SupervisionFormData[K]) => void;
 }
 
@@ -66,6 +66,12 @@ export function DetallesSection({ form, onUpdate }: Props) {
             onChange={(e) => onUpdate('foto', e.target.files?.[0] ?? null)}
           />
         </label>
+      </Field>
+      <Field label="Firma del empleado (opcional)">
+        <SignaturePad
+          value={form.firma}
+          onChange={(signature) => onUpdate('firma', signature)}
+        />
       </Field>
     </Section>
   );

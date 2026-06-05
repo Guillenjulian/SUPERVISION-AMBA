@@ -1,7 +1,6 @@
 import { colors, font, headingFont } from '../../styles/theme';
 import { AppLogo } from './AppLogo';
 import { LoginBar } from './LoginBar';
-import ThemeToggle from './ThemeToggle';
 
 export function AppHeader() {
   return (
@@ -27,7 +26,6 @@ export function AppHeader() {
           </div>
         </div>
         <LoginBar />
-        <ThemeToggle />
       </div>
     </header>
   );

@@ -26,6 +26,7 @@ function createInitialForm(): SupervisionFormData {
     novedad: '',
     descNovedad: '',
     foto: null,
+    firma: null,
   };
 }
 

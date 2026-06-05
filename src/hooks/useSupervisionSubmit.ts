@@ -21,11 +21,15 @@ export function useSupervisionSubmit() {
     if (form.foto) {
       message += `\n\n📷 Foto adjunta: ${form.foto.name} (enviar por otro canal si aplica)`;
     }
+    if (form.firma) {
+      message += `\n\n✍️ Firma digital capturada`;
+    }
 
     const result = isGoogleBackendConfigured()
       ? await submitSupervisionToGoogle({
           ...form,
           foto: form.foto ? form.foto.name : '',
+          firma: form.firma ?? '',
         })
       : await submitSupervision({
       subject: `Supervisión AMBA — ${form.cliente} — ${form.supervisor} — ${form.fechaInicio}`,
