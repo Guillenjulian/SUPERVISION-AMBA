@@ -1,35 +1,60 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { SUPERVISORES } from '../constants';
+import { supabase } from '../lib/supabase';
+import type { Session } from '@supabase/supabase-js';
 
 type AuthContextValue = {
   supervisor: string | null;
-  login: (name: string) => void;
-  logout: () => void;
-  supervisorsList: string[];
+  session: Session | null;
+  cargando: boolean;
+  logout: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [supervisor, setSupervisor] = useState<string | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const [cargando, setCargando] = useState(true);
 
-  useEffect(() => {
-    const saved = localStorage.getItem('supervisor');
-    if (saved) setSupervisor(saved);
-  }, []);
-
-  const login = (name: string) => {
-    setSupervisor(name);
-    localStorage.setItem('supervisor', name);
+  // Cargar nombre del supervisor desde la tabla supervisores
+  const cargarSupervisor = async (userId: string) => {
+    const { data } = await supabase
+      .from('supervisores')
+      .select('nombre')
+      .eq('id', userId)
+      .single();
+    if (data?.nombre) setSupervisor(data.nombre);
   };
 
-  const logout = () => {
+  useEffect(() => {
+    // Sesión actual al cargar
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      if (session?.user) cargarSupervisor(session.user.id);
+      setCargando(false);
+    });
+
+    // Escuchar cambios de sesión
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      if (session?.user) {
+        cargarSupervisor(session.user.id);
+      } else {
+        setSupervisor(null);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const logout = async () => {
+    await supabase.auth.signOut();
     setSupervisor(null);
-    localStorage.removeItem('supervisor');
+    setSession(null);
   };
 
   return (
-    <AuthContext.Provider value={{ supervisor, login, logout, supervisorsList: SUPERVISORES }}>
+    <AuthContext.Provider value={{ supervisor, session, cargando, logout }}>
       {children}
     </AuthContext.Provider>
   );
