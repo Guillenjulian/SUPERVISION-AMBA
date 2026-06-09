@@ -7,7 +7,9 @@ import { SuccessScreen } from '../components/feedback/SuccessScreen';
 import { AppLayout } from '../components/layout/AppLayout';
 import { LoginScreen } from '../components/layout/LoginScreen';
 import { ObjetivosStep } from '../components/objetivos/ObjetivosStep';
+import { InicioTurnoScreen } from '../components/turno/InicioTurnoScreen';
 import { useAuth } from '../context/AuthContext';
+import { useJornada } from '../hooks/useJornada';
 import { useSupervisionForm } from '../hooks/useSupervisionForm';
 import { useSupervisionSubmit } from '../hooks/useSupervisionSubmit';
 import type { Objetivo } from '../hooks/useObjetivos';
@@ -15,12 +17,14 @@ import type { Objetivo } from '../hooks/useObjetivos';
 type Paso = 'objetivos' | 'formulario';
 
 export function SupervisionPage() {
-  const { session, cargando, supervisor } = useAuth();
+  const { session, cargando: cargandoAuth, supervisor } = useAuth();
+  const { jornadaActiva, cargando: cargandoJornada, iniciarJornada } = useJornada(session?.user?.id);
   const [paso, setPaso] = useState<Paso>('objetivos');
   const { form, update, setCliente, reset } = useSupervisionForm();
   const { enviado, enviando, error, submit, resetSubmit } = useSupervisionSubmit();
 
-  if (cargando) {
+  // 1. Cargando sesión
+  if (cargandoAuth || (session && cargandoJornada)) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
         <div style={{ textAlign: 'center', color: '#888' }}>
@@ -31,10 +35,24 @@ export function SupervisionPage() {
     );
   }
 
+  // 2. Sin sesión → login
   if (!session) {
     return <LoginScreen onStart={() => setPaso('objetivos')} />;
   }
 
+  // 3. Con sesión pero sin turno iniciado → pantalla de inicio de turno
+  if (!jornadaActiva) {
+    return (
+      <AppLayout>
+        <InicioTurnoScreen
+          nombreSupervisor={supervisor ?? 'Supervisor'}
+          onIniciar={iniciarJornada}
+        />
+      </AppLayout>
+    );
+  }
+
+  // 4. Supervisión enviada → pantalla de éxito
   if (enviado) {
     return (
       <AppLayout>
@@ -43,6 +61,7 @@ export function SupervisionPage() {
     );
   }
 
+  // 5. Flujo normal: objetivos → formulario
   return (
     <AppLayout>
       {paso === 'objetivos' ? (
