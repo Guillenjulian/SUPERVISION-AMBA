@@ -27,3 +27,7 @@ select option {
     font-size: 14px;
   }
 }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
