@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { SupervisionForm } from '../components/form';
-import { ConfigWarning } from '../components/feedback/ConfigWarning';
 import { FormError } from '../components/feedback/FormError';
 import { SubmitButton } from '../components/feedback/SubmitButton';
 import { SuccessScreen } from '../components/feedback/SuccessScreen';
@@ -87,9 +86,8 @@ export function SupervisionPage() {
             ← Volver a objetivos
           </button>
           <SupervisionForm form={form} onUpdate={update} onClienteChange={setCliente} />
-          <ConfigWarning />
           <FormError message={error} />
-          <SubmitButton enviando={enviando} onClick={() => submit(form)} />
+          <SubmitButton enviando={enviando} onClick={() => submit(form, session.user.id)} />
         </>
       )}
     </AppLayout>

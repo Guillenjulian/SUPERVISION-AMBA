@@ -41,7 +41,7 @@ Hay un `logo.svg` de ejemplo. Para usar el tuyo, reemplazá ese archivo o agreg�
 ## Desarrollo
 
 ```bash
-cp .env.example .env   # VITE_WEB3FORMS_KEY=...
+cp .env.example .env   # completá VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY
 npm run dev:supervision
 ```
 
