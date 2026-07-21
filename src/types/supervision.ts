@@ -1,4 +1,5 @@
 export interface SupervisionFormData {
+  tipoSupervision: string;
   supervisor: string;
   cliente: string;
   sucursal: string;

@@ -5,6 +5,7 @@ import { now } from '../utils/datetime';
 function createInitialForm(): SupervisionFormData {
   const t = now();
   return {
+    tipoSupervision: 'Supervisión completa',
     supervisor: 'Guillen Julian',
     cliente: '',
     sucursal: '',
