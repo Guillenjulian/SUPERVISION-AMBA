@@ -12,6 +12,7 @@ export async function submitSupervisionToGoogle(data: Record<string, any>): Prom
   try {
     // Preparar payload
     const payload: any = {
+      tipoSupervision: data.tipoSupervision || '',
       supervisor: data.supervisor || '',
       cliente: data.cliente || '',
       sucursal: data.sucursal || '',

@@ -91,6 +91,16 @@ export const OBJETIVOS_MAP: Record<string, string[]> = {
 };
 
 
+export const TIPOS_SUPERVISION = [
+  'Supervisión completa',
+  'Apertura de lobby',
+  'Cierre de lobby',
+];
+
+// Tipos de supervisión que solo requieren registrar la novedad,
+// omitiendo las secciones de auditoría (personal, entrevista y eventos).
+export const TIPOS_SOLO_NOVEDAD = ['Apertura de lobby', 'Cierre de lobby'];
+
 export const EVENTOS = [
   'Supervisión espontánea',
   'Aviso de robo',

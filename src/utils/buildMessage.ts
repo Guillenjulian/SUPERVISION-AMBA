@@ -1,18 +1,20 @@
 import type { SupervisionFormData } from '../types/supervision';
 
-export function buildSupervisionMessage(data: SupervisionFormData): string {
-  return `
-SUPERVISIÓN AMBA — ${data.fechaInicio} ${data.horaInicio}
-═══════════════════════════════════════
+import { TIPOS_SOLO_NOVEDAD } from '../constants';
 
+export function buildSupervisionMessage(data: SupervisionFormData): string {
+  const soloNovedad = TIPOS_SOLO_NOVEDAD.includes(data.tipoSupervision);
+
+  const datosGenerales = `
 📋 DATOS GENERALES
+• Tipo: ${data.tipoSupervision || '—'}
 • Supervisor: ${data.supervisor}
 • Cliente: ${data.cliente}
 • Sucursal: ${data.sucursal || '—'}
 • Inicio: ${data.fechaInicio} ${data.horaInicio}
-• Fin: ${data.fechaFin} ${data.horaFin}
+• Fin: ${data.fechaFin} ${data.horaFin}`;
 
-👤 PERSONAL AUDITADO
+  const auditoria = `
 👤 PERSONAL AUDITADO
 • Agente: ${data.nombreAgente}
 • Legajo: ${data.legajo}
@@ -27,10 +29,17 @@ SUPERVISIÓN AMBA — ${data.fechaInicio} ${data.horaInicio}
 
 ⚡ EVENTOS
 • Tipo: ${[...data.eventos, data.eventoOtro].filter(Boolean).join(', ') || '—'}
-• ¿Con éxito?: ${data.exito || '—'}
+• ¿Con éxito?: ${data.exito || '—'}`;
 
+  const detalles = `
 📝 DETALLES
 • Novedad: ${data.novedad || '—'}
-• Descripción: ${data.descNovedad || '—'}
+• Descripción: ${data.descNovedad || '—'}`;
+
+  return `
+SUPERVISIÓN AMBA — ${data.fechaInicio} ${data.horaInicio}
+═══════════════════════════════════════
+${datosGenerales}
+${soloNovedad ? '' : `${auditoria}\n`}${detalles}
   `.trim();
 }
