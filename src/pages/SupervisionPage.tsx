@@ -68,6 +68,9 @@ export function SupervisionPage() {
         <ObjetivosStep
           onSeleccionar={(objetivo: Objetivo) => {
             update('sucursal', objetivo.nombre);
+            update('sucursalId', objetivo.sucursal_id);
+            update('latInicio', objetivo.lat);
+            update('lngInicio', objetivo.lng);
             if (supervisor) update('supervisor', supervisor);
             const n = objetivo.nombre.toLowerCase();
             if (n.includes('credicoop')) setCliente('Banco Credicoop');
@@ -89,7 +92,10 @@ export function SupervisionPage() {
           <SupervisionForm form={form} onUpdate={update} onClienteChange={setCliente} />
           <ConfigWarning />
           <FormError message={error} />
-          <SubmitButton enviando={enviando} onClick={() => submit(form)} />
+          <SubmitButton
+            enviando={enviando}
+            onClick={() => session?.user?.id && submit(form, session.user.id)}
+          />
         </>
       )}
     </AppLayout>

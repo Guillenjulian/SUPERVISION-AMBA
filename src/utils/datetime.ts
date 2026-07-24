@@ -6,3 +6,10 @@ export function now() {
     hora: `${pad(d.getHours())}:${pad(d.getMinutes())}`,
   };
 }
+
+// Convierte fecha "DD/MM/YYYY" + hora "HH:mm" (horario local) a un ISO timestamp.
+export function toISOTimestamp(fecha: string, hora: string): string {
+  const [dia, mes, anio] = fecha.split('/').map(Number);
+  const [horas, minutos] = hora.split(':').map(Number);
+  return new Date(anio, mes - 1, dia, horas, minutos).toISOString();
+}

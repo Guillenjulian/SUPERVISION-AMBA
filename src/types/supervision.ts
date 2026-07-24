@@ -3,6 +3,9 @@ export interface SupervisionFormData {
   supervisor: string;
   cliente: string;
   sucursal: string;
+  sucursalId: string | null;
+  latInicio: number | null;
+  lngInicio: number | null;
   fechaInicio: string;
   horaInicio: string;
   fechaFin: string;

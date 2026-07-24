@@ -6,6 +6,7 @@ export interface Objetivo {
   nombre: string;
   lat: number;
   lng: number;
+  sucursal_id: string | null;
   distancia?: number; // en metros
 }
 
@@ -33,7 +34,7 @@ export function useObjetivos() {
   useEffect(() => {
     supabase
       .from('objetivos')
-      .select('id, nombre, lat, lng')
+      .select('id, nombre, lat, lng, sucursal_id')
       .eq('activo', true)
       .then(({ data, error }) => {
         if (!error && data) setTodos(data);
