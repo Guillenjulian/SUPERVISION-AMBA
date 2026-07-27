@@ -6,6 +6,7 @@ type AuthContextValue = {
   supervisor: string | null;
   session: Session | null;
   cargando: boolean;
+  isAdmin: boolean;
   logout: () => Promise<void>;
 };
 
@@ -15,6 +16,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [supervisor, setSupervisor] = useState<string | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [cargando, setCargando] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // Cargar nombre del supervisor desde la tabla supervisores
   const cargarSupervisor = async (userId: string) => {
@@ -26,11 +28,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (data?.nombre) setSupervisor(data.nombre);
   };
 
+  const cargarIsAdmin = async () => {
+    const { data } = await supabase.rpc('es_admin');
+    setIsAdmin(Boolean(data));
+  };
+
   useEffect(() => {
     // Sesión actual al cargar
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      if (session?.user) cargarSupervisor(session.user.id);
+      if (session?.user) {
+        cargarSupervisor(session.user.id);
+        cargarIsAdmin();
+      }
       setCargando(false);
     });
 
@@ -39,8 +49,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setSession(session);
       if (session?.user) {
         cargarSupervisor(session.user.id);
+        cargarIsAdmin();
       } else {
         setSupervisor(null);
+        setIsAdmin(false);
       }
     });
 
@@ -51,10 +63,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await supabase.auth.signOut();
     setSupervisor(null);
     setSession(null);
+    setIsAdmin(false);
   };
 
   return (
-    <AuthContext.Provider value={{ supervisor, session, cargando, logout }}>
+    <AuthContext.Provider value={{ supervisor, session, cargando, isAdmin, logout }}>
       {children}
     </AuthContext.Provider>
   );
