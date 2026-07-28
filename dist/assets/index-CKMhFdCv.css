@@ -1,1 +1,0 @@
-*{box-sizing:border-box}body{margin:0;background:#020617}select option{background:#1e293b;color:#f1f5f9}.date-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media (max-width: 480px){.date-grid{grid-template-columns:1fr}body{font-size:14px}}
