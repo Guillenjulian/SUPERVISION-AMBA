@@ -1,0 +1,236 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.header[data-stuck] {
+  border-bottom-color: var(--line);
+  box-shadow: 0 6px 22px -18px rgba(10, 23, 51, 0.5);
+}
+
+.bar {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
+/* --- Marca -------------------------------------------------- */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  flex: none;
+  margin-right: auto;
+}
+
+.logo {
+  width: 42px;
+  height: auto;
+  flex: none;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-size: 1.14rem;
+  font-weight: 500;
+  line-height: 1.05;
+  color: var(--vc-blue-dark);
+  letter-spacing: -0.02em;
+}
+
+.brandText > span {
+  white-space: nowrap;
+}
+
+.brandText strong {
+  font-weight: 800;
+}
+
+.brandText small {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  color: var(--vc-green-dark);
+  margin-top: 0.18rem;
+}
+
+/* --- Navegación de escritorio ------------------------------ */
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.link {
+  position: relative;
+  padding: 0.5rem 0.78rem;
+  border-radius: var(--r-sm);
+  font-size: 0.93rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.16s var(--ease), background 0.16s var(--ease);
+}
+
+.link:hover {
+  color: var(--vc-blue-dark);
+  background: var(--surface-2);
+}
+
+.link.active {
+  color: var(--vc-blue-dark);
+  font-weight: 600;
+}
+
+.link.active::after {
+  content: '';
+  position: absolute;
+  left: 0.78rem;
+  right: 0.78rem;
+  bottom: 0.18rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--vc-green);
+}
+
+/* --- Acciones ---------------------------------------------- */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex: none;
+}
+
+.phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--vc-green-dark);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.phone:hover {
+  color: var(--vc-green);
+}
+
+.burger {
+  display: none;
+  color: var(--vc-blue-dark);
+  padding: 0.25rem;
+  border-radius: var(--r-sm);
+}
+
+/* --- Panel móvil ------------------------------------------- */
+
+.mobilePanel {
+  display: none;
+}
+
+@media (max-width: 1040px) {
+  .desktopNav,
+  .phone {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+}
+
+@media (max-width: 620px) {
+  .cta {
+    display: none;
+  }
+
+  .brandText {
+    font-size: 1.02rem;
+  }
+
+  .logo {
+    width: 34px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .mobilePanel {
+    display: block;
+    position: fixed;
+    inset: var(--header-h) 0 0;
+    background: #fff;
+    padding: var(--sp-5) var(--gutter) var(--sp-7);
+    overflow-y: auto;
+    animation: slideIn 0.24s var(--ease);
+  }
+
+  .mobilePanel[hidden] {
+    display: none;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+
+.mobileLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 0.2rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.mobileLink svg {
+  color: var(--line-strong);
+}
+
+.mobileLink.active {
+  color: var(--vc-blue);
+}
+
+.mobileLink.active svg {
+  color: var(--vc-green);
+}
+
+.mobileActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: var(--sp-6);
+}

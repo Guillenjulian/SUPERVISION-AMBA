@@ -1,0 +1,118 @@
+.btn {
+  --btn-bg: var(--vc-blue);
+  --btn-fg: #fff;
+  --btn-border: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease), background 0.18s var(--ease),
+    border-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  color: var(--btn-fg);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --- Tamaños ---------------------------------------------- */
+
+.md {
+  padding: 0.72rem 1.4rem;
+  font-size: 0.97rem;
+}
+
+.lg {
+  padding: 0.95rem 1.85rem;
+  font-size: 1.05rem;
+}
+
+.block {
+  width: 100%;
+}
+
+/* --- Variantes -------------------------------------------- */
+
+.primary {
+  --btn-bg: var(--vc-blue);
+  box-shadow: var(--shadow-brand);
+}
+.primary:hover {
+  --btn-bg: var(--vc-blue-dark);
+  box-shadow: 0 18px 34px -12px rgba(10, 37, 106, 0.55);
+}
+
+.accent {
+  --btn-bg: var(--vc-green);
+  box-shadow: 0 14px 30px -12px rgba(5, 128, 71, 0.5);
+}
+.accent:hover {
+  --btn-bg: var(--vc-green-dark);
+  box-shadow: 0 18px 34px -12px rgba(5, 128, 71, 0.6);
+}
+
+.outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--vc-blue-dark);
+  --btn-border: var(--line-strong);
+}
+.outline:hover {
+  --btn-border: var(--vc-blue);
+  --btn-bg: color-mix(in srgb, var(--vc-blue) 6%, transparent);
+}
+
+.white {
+  --btn-bg: #fff;
+  --btn-fg: var(--vc-blue-dark);
+  box-shadow: 0 14px 30px -14px rgba(3, 12, 35, 0.6);
+}
+.white:hover {
+  --btn-bg: #fff;
+  --btn-fg: var(--vc-green-dark);
+}
+
+.ghost {
+  --btn-bg: transparent;
+  --btn-fg: #fff;
+  --btn-border: rgba(255, 255, 255, 0.45);
+}
+.ghost:hover {
+  --btn-bg: rgba(255, 255, 255, 0.14);
+  --btn-border: rgba(255, 255, 255, 0.8);
+}
+
+/* --- Íconos ------------------------------------------------ */
+
+.icon,
+.iconRight {
+  flex: none;
+}
+
+.btn:hover .iconRight {
+  transform: translateX(3px);
+}
+
+.iconRight {
+  transition: transform 0.18s var(--ease);
+}

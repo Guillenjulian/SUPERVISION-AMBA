@@ -1,0 +1,88 @@
+.grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--sp-5);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-6) var(--sp-5) var(--sp-5);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.24s var(--ease), box-shadow 0.24s var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.quoteMark {
+  position: absolute;
+  top: 0.35rem;
+  right: 1.2rem;
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  line-height: 1;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--vc-green) 18%, transparent);
+  pointer-events: none;
+}
+
+.quote {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.68;
+  color: var(--ink-2);
+  flex: 1;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: var(--r-pill);
+  background: var(--grad-brand);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.author strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.author small {
+  display: block;
+  font-size: 0.83rem;
+  color: var(--ink-3);
+}
+
+.logosNote {
+  margin-top: var(--sp-6);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}

@@ -2,6 +2,10 @@
 
 Formulario móvil para supervisores en sucursales (Grupo Plus).
 
+> **Nota:** este repositorio también aloja `valmorclean-web/`, el sitio web
+> institucional de Valmor Clean. Es un proyecto independiente, con sus propias
+> dependencias y su propio README — no comparte código con la app de supervisión.
+
 ## Estructura
 
 ```

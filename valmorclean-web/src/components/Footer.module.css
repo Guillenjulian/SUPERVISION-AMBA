@@ -1,0 +1,248 @@
+.footer {
+  background: var(--vc-blue-dark);
+  color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 45rem;
+  height: 45rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(36, 165, 101, 0.16), transparent 62%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: var(--sp-8) var(--gutter) var(--sp-5);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr;
+  gap: var(--sp-6) var(--sp-5);
+}
+
+@media (max-width: 940px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-7) var(--sp-5);
+  }
+  .brandCol {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Columna de marca -------------------------------------- */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.brand:hover {
+  color: #fff;
+}
+
+.brand strong {
+  font-weight: 800;
+}
+
+.brand img {
+  width: 44px;
+  height: auto;
+}
+
+.about {
+  margin-top: var(--sp-4);
+  max-width: 42ch;
+  font-size: 0.93rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.social {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: var(--sp-5);
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.82);
+  transition: all 0.18s var(--ease);
+}
+
+.social a:hover {
+  background: var(--vc-green);
+  border-color: var(--vc-green);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* --- Columnas de links ------------------------------------- */
+
+.colTitle {
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vc-green-light);
+  margin-bottom: var(--sp-4);
+}
+
+.col ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.62rem;
+}
+
+.col a {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  font-size: 0.93rem;
+}
+
+.col a:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.93rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.contact svg {
+  flex: none;
+  margin-top: 0.15rem;
+  color: var(--vc-green-light);
+}
+
+/* --- Franja fiscal ----------------------------------------- */
+
+.fiscal {
+  margin-top: var(--sp-7);
+  padding: var(--sp-5);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+}
+
+.cuit {
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.cuit strong {
+  color: #fff;
+}
+
+.fiscalNote {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 0.25rem;
+  max-width: 52ch;
+}
+
+.qr {
+  flex: none;
+  background: #fff;
+  padding: 0.4rem;
+  border-radius: var(--r-sm);
+  line-height: 0;
+}
+
+.qr img {
+  width: 66px;
+  height: auto;
+}
+
+.qrPending {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--r-sm);
+  border: 1px dashed rgba(255, 255, 255, 0.28);
+  font-size: 0.76rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.qrPending span {
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 600;
+}
+
+/* --- Legal -------------------------------------------------- */
+
+.legal {
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.legal ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: var(--sp-5);
+}
+
+.legal a {
+  color: rgba(255, 255, 255, 0.66);
+  text-decoration: none;
+}
+
+.legal a:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

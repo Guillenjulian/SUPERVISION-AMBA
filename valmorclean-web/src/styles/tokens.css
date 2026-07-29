@@ -1,0 +1,85 @@
+/* ============================================================
+   Valmor Clean — design tokens
+   Colores oficiales según Manual de Marca VC v1.0 (cap. 05).
+   No modificar los valores `--vc-*`: son los colores de marca.
+   ============================================================ */
+
+:root {
+  /* --- Paleta oficial de marca ------------------------------ */
+  --vc-green-dark: #058047;
+  --vc-green: #24a565;
+  --vc-green-light: #46bb81;
+  --vc-blue-dark: #0a256a;
+  --vc-blue: #14358a;
+  --vc-blue-light: #507cc0;
+
+  /* --- Roles semánticos ------------------------------------- */
+  --brand: var(--vc-blue);
+  --brand-deep: var(--vc-blue-dark);
+  --accent: var(--vc-green);
+  --accent-deep: var(--vc-green-dark);
+
+  /* --- Neutros (navy-tinted, derivados de la marca) --------- */
+  --ink: #0a1733;
+  --ink-2: #33415c;
+  --ink-3: #5f6d88;
+  --line: #e2e8f2;
+  --line-strong: #cbd5e6;
+  --surface: #ffffff;
+  --surface-2: #f5f8fc;
+  --surface-3: #edf3fa;
+
+  /* --- Tipografía ------------------------------------------- */
+  --font-display: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --step--1: clamp(0.82rem, 0.79rem + 0.14vw, 0.89rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.09rem);
+  --step-1: clamp(1.19rem, 1.12rem + 0.35vw, 1.4rem);
+  --step-2: clamp(1.42rem, 1.29rem + 0.63vw, 1.8rem);
+  --step-3: clamp(1.69rem, 1.48rem + 1.05vw, 2.32rem);
+  --step-4: clamp(2.02rem, 1.68rem + 1.68vw, 3rem);
+  --step-5: clamp(2.4rem, 1.88rem + 2.6vw, 3.9rem);
+
+  /* --- Espaciado -------------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+
+  --section-y: clamp(3.5rem, 2.4rem + 5vw, 6.5rem);
+  --container: 1180px;
+  --container-narrow: 800px;
+  --gutter: clamp(1.15rem, 0.6rem + 2.4vw, 2.5rem);
+
+  /* --- Formas ----------------------------------------------- */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(10, 23, 51, 0.06), 0 1px 3px rgba(10, 23, 51, 0.05);
+  --shadow-md: 0 6px 16px -4px rgba(10, 23, 51, 0.1), 0 2px 6px -2px rgba(10, 23, 51, 0.06);
+  --shadow-lg: 0 24px 48px -16px rgba(10, 37, 106, 0.22), 0 8px 20px -12px rgba(10, 37, 106, 0.14);
+  --shadow-brand: 0 14px 30px -12px rgba(20, 53, 138, 0.45);
+
+  /* --- Gradientes de marca ---------------------------------- */
+  --grad-brand: linear-gradient(135deg, var(--vc-blue-dark) 0%, var(--vc-blue) 55%, var(--vc-blue-light) 130%);
+  --grad-accent: linear-gradient(135deg, var(--vc-green-dark) 0%, var(--vc-green) 60%, var(--vc-green-light) 130%);
+  --grad-duo: linear-gradient(120deg, var(--vc-blue-dark) 0%, var(--vc-blue) 45%, var(--vc-green-dark) 100%);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --header-h: 76px;
+}
+
+@media (max-width: 860px) {
+  :root {
+    --header-h: 64px;
+  }
+}

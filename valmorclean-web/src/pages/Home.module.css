@@ -1,0 +1,202 @@
+/* --- Encabezado de la grilla de servicios ------------------ */
+
+.servicesHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+}
+
+.servicesHead > :first-child {
+  margin-bottom: 0;
+}
+
+.servicesHeadCta {
+  flex: none;
+  margin-bottom: 0.3rem;
+}
+
+.serviceGrid {
+  margin-top: var(--sp-7);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15.5rem), 1fr));
+  gap: var(--sp-4);
+}
+
+/* --- Bloque partido: foto + ventajas ----------------------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.splitVisual {
+  position: relative;
+}
+
+.splitVisual figure {
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--r-xl);
+}
+
+.badgeCard {
+  position: absolute;
+  right: clamp(-1rem, -1.5vw, -2rem);
+  bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 17rem;
+  padding: 0.9rem 1.1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  color: var(--vc-green-dark);
+}
+
+.badgeCard strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.badgeCard span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  margin-top: 0.12rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 900px) {
+  .splitVisual {
+    max-width: 30rem;
+  }
+  .badgeCard {
+    right: 0.75rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .badgeCard {
+    position: static;
+    max-width: none;
+    margin-top: 0.9rem;
+    box-shadow: var(--shadow-md);
+  }
+}
+
+/* --- Lista de ventajas -------------------------------------- */
+
+.advantages {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.advantages li {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.advantages h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.advantages p {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+  max-width: 52ch;
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  margin-top: 0.15rem;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--vc-green) 15%, transparent);
+  color: var(--vc-green-dark);
+}
+
+.advantagesCta {
+  margin-top: var(--sp-6);
+}
+
+/* --- Pasos del proceso -------------------------------------- */
+
+.steps {
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--sp-5);
+}
+
+.steps li {
+  position: relative;
+  padding: var(--sp-5);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.24s var(--ease), border-color 0.24s var(--ease), transform 0.24s var(--ease);
+}
+
+.steps li:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(70, 187, 129, 0.45);
+  transform: translateY(-4px);
+}
+
+.stepNum {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--vc-green-light);
+  margin-bottom: var(--sp-4);
+}
+
+.steps h3 {
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+
+.steps p {
+  font-size: 0.91rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* --- Pie de la FAQ ------------------------------------------ */
+
+.faqFoot {
+  margin-top: var(--sp-6);
+  display: flex;
+  justify-content: center;
+}

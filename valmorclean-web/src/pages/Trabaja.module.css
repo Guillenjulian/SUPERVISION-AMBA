@@ -1,0 +1,166 @@
+/* --- Beneficios --------------------------------------------- */
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--sp-4);
+}
+
+.benefits article {
+  padding: var(--sp-5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: #fff;
+  transition: transform 0.24s var(--ease), box-shadow 0.24s var(--ease);
+}
+
+.benefits article:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.benefitIcon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--r-md);
+  background: var(--grad-accent);
+  color: #fff;
+  margin-bottom: var(--sp-4);
+}
+
+.benefits h3 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.benefits p {
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* --- Formulario --------------------------------------------- */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  padding: var(--sp-6) clamp(1.15rem, 0.6rem + 2vw, 2rem);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+@media (max-width: 620px) {
+  .row2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.consent {
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+.consent[data-error] {
+  border-color: #e0736b;
+  background: rgba(224, 115, 107, 0.06);
+}
+
+.consentError {
+  margin-top: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #b3261e;
+}
+
+.alert {
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--r-md);
+  background: #fdf1ef;
+  border: 1px solid #f0c4bf;
+  color: #8f2018;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.submitRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.devNote {
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  line-height: 1.55;
+}
+
+.devNote code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.94em;
+  background: var(--surface-3);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+/* --- Confirmación ------------------------------------------- */
+
+.success {
+  text-align: center;
+  padding: var(--sp-7) var(--sp-5);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+
+.successIcon {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto var(--sp-5);
+  border-radius: var(--r-pill);
+  background: var(--grad-accent);
+  color: #fff;
+}
+
+.success p {
+  margin: var(--sp-4) auto var(--sp-6);
+  max-width: 48ch;
+  color: var(--ink-2);
+  line-height: 1.65;
+}
+
+/* --- LinkedIn ------------------------------------------------ */
+
+.linkedin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+}
+
+.linkedin h2 {
+  font-size: var(--step-2);
+  color: #fff;
+}
+
+.linkedin p {
+  margin-top: 0.4rem;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 46ch;
+}

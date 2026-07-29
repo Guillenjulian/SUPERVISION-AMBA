@@ -1,0 +1,236 @@
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* --- Índice rápido ------------------------------------------ */
+
+.jump {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 60;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.jump ul {
+  list-style: none;
+  padding: 0.7rem 0;
+  margin: 0;
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.jump li {
+  flex: none;
+}
+
+.jump a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.16s var(--ease);
+}
+
+.jump a:hover {
+  border-color: var(--vc-blue);
+  background: var(--vc-blue);
+  color: #fff;
+}
+
+.jump a svg {
+  color: var(--vc-green-dark);
+}
+
+.jump a:hover svg {
+  color: #fff;
+}
+
+/* --- Filas de servicio -------------------------------------- */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 2rem + 4vw, 5.5rem);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(1.75rem, 1rem + 3.5vw, 3.75rem);
+  align-items: center;
+  scroll-margin-top: calc(var(--header-h) + 4.5rem);
+}
+
+/* Alterna el lado de la foto para romper la monotonía de la lista. */
+.row:nth-child(even) .rowMedia {
+  order: 2;
+}
+
+@media (max-width: 880px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .row:nth-child(even) .rowMedia {
+    order: 0;
+  }
+}
+
+.rowMedia {
+  position: relative;
+}
+
+.rowMedia figure {
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--r-xl);
+}
+
+.rowIndex {
+  position: absolute;
+  top: -0.85rem;
+  left: -0.6rem;
+  font-family: var(--font-display);
+  font-size: 3.6rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: color-mix(in srgb, var(--vc-blue) 22%, transparent);
+  pointer-events: none;
+}
+
+.rowIcon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--r-md);
+  background: var(--surface-3);
+  color: var(--vc-blue);
+  margin-bottom: var(--sp-4);
+}
+
+.rowCopy h2 {
+  font-size: var(--step-3);
+  margin-bottom: 0.6rem;
+}
+
+.rowLead {
+  font-size: 1.06rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  font-weight: 500;
+  max-width: 56ch;
+}
+
+.rowText {
+  margin-top: var(--sp-4);
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--ink-3);
+  max-width: 62ch;
+}
+
+.bullets {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.94rem;
+  color: var(--ink-2);
+}
+
+.bullets svg {
+  flex: none;
+  margin-top: 0.24rem;
+  color: var(--vc-green);
+}
+
+.rowActions {
+  margin-top: var(--sp-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+/* --- Galería antes / después -------------------------------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: var(--sp-5);
+}
+
+.pair {
+  margin: 0;
+}
+
+.pairImages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--line);
+}
+
+.pairSide {
+  position: relative;
+}
+
+.pairSide figure {
+  border-radius: 0;
+}
+
+.tagBefore,
+.tagAfter {
+  position: absolute;
+  left: 0.6rem;
+  bottom: 0.6rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--r-pill);
+  font-family: var(--font-display);
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+
+.tagBefore {
+  background: rgba(10, 23, 51, 0.72);
+}
+
+.tagAfter {
+  background: color-mix(in srgb, var(--vc-green-dark) 88%, transparent);
+}
+
+.pair figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  text-align: center;
+}

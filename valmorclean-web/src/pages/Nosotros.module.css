@@ -1,0 +1,224 @@
+/* --- Introducción ------------------------------------------ */
+
+.intro {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .intro {
+    grid-template-columns: 1fr;
+  }
+}
+
+.introCopy p {
+  margin-top: var(--sp-4);
+  max-width: 62ch;
+}
+
+.introCopy strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.introVisual figure {
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--r-xl);
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+}
+
+@media (max-width: 900px) {
+  .introVisual {
+    max-width: 26rem;
+  }
+  .introVisual figure {
+    position: static;
+  }
+}
+
+.facts {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--sp-6);
+  display: grid;
+  /* Fijo en 2 columnas: con `auto-fit` los 4 datos dejaban una celda vacía
+     y el fondo del borde se veía como un bloque gris suelto. */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.facts li {
+  background: #fff;
+  padding: var(--sp-4);
+}
+
+.facts span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 0.25rem;
+}
+
+.facts strong {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--vc-blue-dark);
+  line-height: 1.3;
+}
+
+@media (max-width: 420px) {
+  .facts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Pilares ------------------------------------------------ */
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--sp-4);
+}
+
+.pillar {
+  padding: var(--sp-6) var(--sp-5);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: transform 0.24s var(--ease), box-shadow 0.24s var(--ease);
+}
+
+.pillar:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.pillarIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--r-md);
+  background: var(--grad-accent);
+  color: #fff;
+  margin-bottom: var(--sp-4);
+}
+
+.pillar h3 {
+  font-size: 1.22rem;
+  margin-bottom: 0.55rem;
+}
+
+.pillar p {
+  font-size: 0.94rem;
+  line-height: 1.68;
+  color: var(--ink-3);
+}
+
+/* --- Compromiso --------------------------------------------- */
+
+.commitment {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 1rem + 4vw, 4rem);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .commitment {
+    grid-template-columns: 1fr;
+  }
+}
+
+.commitment > :first-child {
+  margin-bottom: 0;
+}
+
+.checkList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.checkList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.checkList svg {
+  flex: none;
+  margin-top: 0.2rem;
+  color: var(--vc-green-light);
+}
+
+/* --- Línea de tiempo ---------------------------------------- */
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--sp-5);
+  position: relative;
+}
+
+.timeline li {
+  position: relative;
+  padding-top: var(--sp-5);
+  border-top: 2px solid var(--line);
+}
+
+.timeline li::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--vc-green);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--vc-green) 20%, transparent);
+}
+
+.year {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--vc-blue);
+  margin-bottom: 0.4rem;
+}
+
+.timeline h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.timeline p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+}

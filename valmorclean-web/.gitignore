@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.local
+*.local
+.DS_Store
+
+# El .gitignore de la raíz excluye .env.example; acá sí se versiona, porque
+# documenta las variables que necesita el sitio y no contiene secretos.
+!.env.example

@@ -1,0 +1,211 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+  min-width: 0;
+}
+
+.fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 0;
+}
+
+.req {
+  color: var(--vc-green-dark);
+  margin-left: 0.15rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.78rem 0.95rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.98rem;
+  line-height: 1.4;
+  transition: border-color 0.16s var(--ease), box-shadow 0.16s var(--ease);
+}
+
+.input::placeholder {
+  color: #9aa7bf;
+}
+
+.input:hover {
+  border-color: #adbcd6;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--vc-blue);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--vc-blue) 14%, transparent);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.selectWrap {
+  position: relative;
+}
+
+.select {
+  appearance: none;
+  padding-right: 2.6rem;
+  cursor: pointer;
+}
+
+.select:invalid {
+  color: #9aa7bf;
+}
+
+.caret {
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-3);
+  pointer-events: none;
+}
+
+.hint {
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  margin: 0;
+}
+
+.error {
+  font-size: 0.82rem;
+  color: #b3261e;
+  font-weight: 500;
+  margin: 0;
+}
+
+.field[data-error] .input {
+  border-color: #e0736b;
+}
+
+.field[data-error] .input:focus {
+  box-shadow: 0 0 0 4px rgba(179, 38, 30, 0.13);
+}
+
+/* --- Chips de opción --------------------------------------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.52rem 1rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.16s var(--ease);
+}
+
+.chip:hover {
+  border-color: var(--vc-blue-light);
+  color: var(--vc-blue-dark);
+}
+
+.chip[data-checked] {
+  background: var(--vc-blue);
+  border-color: var(--vc-blue);
+  color: #fff;
+  font-weight: 600;
+}
+
+.chipInput {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.chipInput:focus-visible + span {
+  outline: 3px solid var(--vc-green);
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+
+/* --- Archivo ----------------------------------------------- */
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.78rem 0.95rem;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all 0.16s var(--ease);
+}
+
+.file:hover {
+  border-color: var(--vc-blue);
+  background: color-mix(in srgb, var(--vc-blue) 5%, #fff);
+}
+
+.fileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.fileInput:focus-visible + svg {
+  outline: 3px solid var(--vc-green);
+  outline-offset: 3px;
+}
+
+.fileText {
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Checkbox ---------------------------------------------- */
+
+.check {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+
+.check input {
+  margin-top: 0.22rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--vc-blue);
+  flex: none;
+  cursor: pointer;
+}
